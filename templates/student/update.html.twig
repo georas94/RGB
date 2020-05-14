@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+
+<div class="container d-flex justify-content-center mt-5">
+
+    <div class="col-lg-6 col-sm-12 col-md-6 d-flex justify-content-center">
+        <form method="POST" class="form-bg rounded p-3" enctype="multipart/form-data">
+            <h2 class="text-center text-dark">Ajouter une photo de profil</h2>
+            <div class="custom-file mt-3">
+                <label for="profilePhoto" class="custom-file-label">Sélectionner une photo de profil</label>
+                <input type="file" class="custom-file-input" name="profilePhoto">
+            </div>
+            <button type="submit" class="btn btn-dark btn-block mt-3" name="submit">Valider</button>
+            
+        </form>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

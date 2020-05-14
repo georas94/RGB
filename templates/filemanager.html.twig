@@ -1,0 +1,46 @@
+<div class="filemanager">
+
+
+    <div class="files">
+        <h2 class="text-center text-lead">Cliquer sur un fichier pour le télécharger</h2>
+
+        <div class="row">
+
+            {% if uploads is defined %}
+            {% for upload in uploads %}
+            {% if upload.title != 'profil_picture' %}
+            <div class="card col-sm-12 col-md-6 col-6 p-3">
+                <iframe src="{{asset('assets/uploads/' ~ upload.file_path)}}"></iframe>
+
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">{{upload.title}}</h5>
+                    <p class="card-text">Fichier n°<small>{{upload.id}} </small></p>
+                    <a href="{{asset('assets/uploads/' ~ upload.file_path)}}" class="btn btn-primary " download>Télécharger</a>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+            {% endif %}
+
+
+            <div class="upload" class="container">
+                <form method="POST" class="bg-light p-3" enctype="multipart/form-data">
+                    <div class="form-group mb-5">
+                        <input type="hidden" name="action" value="sendfile">
+                        <label class="title_upload" for="title_upload">Titre du fichier</label>
+                        <input type="text" name="title_upload" class="title_upload form-control" id="title_upload"
+                            placeholder="Votre titre...">
+                    </div>
+
+                    <div class="custom-file">
+                        <label class="custom-file-label" for="upload_image">Uploader des fichiers</label>
+                        <input type="file" name="upload_image" class="upload_image custom-file-input" id="upload_image">
+                    </div>
+                    <button type="submit" name="submit" class="btn btn-block btn-success ">Envoyer</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

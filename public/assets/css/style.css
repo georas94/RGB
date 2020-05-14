@@ -1,0 +1,289 @@
+
+
+/*CSS FINAL STUDENT */
+
+body{
+    font-family: 'Lato',
+    sans-serif;
+    font-size: 1em;
+    color:#3c4249;
+}
+
+
+footer{
+    height:220px;
+    padding: 10px;
+}
+
+.sandbox{
+    height: 300px;
+    width: 730px;
+    margin-bottom: 216px;
+
+}
+
+.entrepriseLogo, #profilImage {
+    height: 100px;
+    width: 100px;
+    border-radius: 50px;
+}
+
+.row{
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+.ads{
+    height: 204px;
+    margin-top: 15px;
+    max-width: 100% !important;
+}
+
+.adsResults{
+
+    height: 150px;
+    margin-top: 17px;
+}
+
+.fc-toolbar.fc-header-toolbar{
+    font-size: 0.7em;
+}
+
+.display-4{
+    font-size: 1.5em;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+#results{
+    overflow: scroll;
+    max-height: 500px;
+    overflow-x: hidden;
+}
+
+.partenaires{
+    margin-top :250px;
+}
+
+.titres {
+    font-size: 1.3em;
+}
+.content {
+    font-size: 1em;
+}
+
+li{
+    list-style: none;
+}
+
+/*CSS FINAL */
+.logo{
+    height: 100px;
+    width: 200px;
+}
+
+.bg-navbar{
+    background-color:#F8F8F8;
+}
+header{
+    margin-top: 150px;
+}
+
+.slogan{
+font-family: 'Lato',
+sans-serif;
+font-size: 1.8em;
+}
+
+.btnChasse{
+    background-color: #4285f4;
+    padding: 10px;
+    width: 180px;
+}
+
+.queFaisonsNous{
+    padding-top: 40px;
+}
+
+.rondCards{
+    height: 75px;
+    width: 75px;
+    background-color: #4285f4;
+    position: relative;
+    top:-100px;
+}
+
+.rondCardsblue{
+    height: 75px;
+    width: 75px;
+    background-color: #4285f4;
+    position: relative;
+    top:-100px;
+}
+
+.rondCardsgreen{
+    height: 75px;
+    width: 75px;
+    background-color: #19bc8b;
+    position: relative;
+    top:-100px;
+}
+
+.rondCardsred{
+    height: 75px;
+    width: 75px;
+    background-color: #cb72aa;
+    position: relative;
+    top:-100px;
+}
+
+.jumbotronActivites{
+    margin-top: 30px;
+}
+.footer{
+    margin-top: 40px;
+}
+#inputEmail,  #inputPassword{
+    font-size: 1.2em ;
+}
+
+.form label{
+    font-size: 1.1em;
+}
+.formConnexion{
+    width: 90%;
+}
+
+/*MEDIA QUERIES*/
+
+@media screen and (max-width: 800px) {
+    #calendar {
+      margin-top: 0px;
+    }
+    .fondConnexion{
+        display: none;
+    }
+  }
+
+h2 {
+    font-size:1.5em;
+  }
+.btnMailEnvoyer{
+  background-color: #4285f4;
+}
+.btnReception{
+    background-color: white;
+}
+.fc-button-group button{
+        background-color: #4285f4;
+        border: none;
+}
+.fc-today-button, .fc-dayGridMonth-button {
+    background-color: #F8F8F8 !important;
+    border:none !important;
+    color:black !important;
+    font-weight: bold;
+}
+.fc-right button{
+    width: 150px;
+}
+
+.form-bg{
+    background-color:#f8f8f8;
+    margin-top:40px;
+}
+
+#mailboxToggle{
+    max-height: 450px;
+    overflow: scroll;
+    overflow-x: hidden;
+    scrollbar-color: #4285f4;
+    scrollbar-width: thin;
+}
+
+.jumbotronJobSearch {
+    margin-top: 30px;
+    background-color:#f8f8f8;
+    scrollbar-color: #4285f4;
+    scrollbar-width: thin;
+}
+
+.jsb_holder{
+    border:none !important;
+    padding: 4px;
+}
+.jsb_btn{
+    margin-top:22px;
+    width: 100% !important;
+    height: 30px !important;
+    color:white !important;
+    border-radius: 22px;
+}
+.flat{
+    border-radius: 15px !important;
+}
+.display-3{
+    font-size:2em;
+}
+.files h2{
+    font-size: 1.5em;
+}
+
+.profilImage{
+    margin-top: 61px;
+}
+
+#calendar{
+    max-width: 700px;
+    margin-top: 200px;
+}
+
+.files{
+    overflow: scroll;
+    max-height: 400px;
+    scrollbar-width: thin;
+    overflow-x: hidden;
+}
+
+iframe{
+    scrollbar-width: thin !important;
+    overflow-x: hidden !important;
+    background-color:#f8f8f8 !important;
+    scrollbar-color: #4285f4 !important;
+}
+.actuality{
+    margin-top: 7px !important;
+    max-height: 925px;
+    width: 718px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin-top: 30px;
+    background-color:#f8f8f8;
+    scrollbar-color: #4285f4;
+    scrollbar-width: thin;
+}
+.custom-file-label{
+    font-size: 0.9em;
+}
+.form-bg{
+    margin-top: 10px;
+}
+.btnProposerEntreprise{
+    background-color: #4285f4;
+    color: white;
+}
+
+.btnConnexion{
+    background-color: #007BFF;
+}
+.btnInscription{
+    background-color: white;
+}
+.btnInscription:hover {
+    transition: all 1s ease-out;
+    background-color: rgba(192, 182, 182, 0.596);
+    }
+.btnConnexion:hover {
+    transition: all 1s ease-out;
+    background-color: rgb(107, 162, 221);
+    }

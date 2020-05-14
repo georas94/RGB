@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+    {% block stylesheets %}{% endblock %}
+</head>
+
+<body>
+<header>
+  <nav class="navbar navbar-expand-lg bg-navbar fixed-top">
+
+    <a class="navbar-brand" href=""><img class="logo" src="{{asset('assets/img/logorgb.png')}}" alt=""></a>
+    {% if is_granted('ROLE_SCHOOL') %}
+      <a class="navbar-brand" href="">/ {{ app.user.identity }}</a>
+    {% endif %}
+    {% if is_granted('ROLE_ENTREPRISE') %}
+      <a class="navbar-brand" href="">/ {{ app.user.identity }}</a>
+    {% endif %}
+    {% if is_granted('ROLE_STUDENT') %}
+
+    {% endif %}
+    {% if is_granted('ROLE_ADMIN') %}
+      <a class="navbar-brand" href="">/ ADMIN SYSTEM</a>
+    {% endif %}
+
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarIndex" aria-controls="navbarIndex" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarIndex">
+      <ul class="navbar-nav mr-auto">
+
+        <!-- NAVBAR ENTREPRISE -->
+        {% if is_granted('ROLE_ENTREPRISE') %}
+
+          <li class="nav-item">
+            <a class="nav-item nav-link active" href="{{ path('indexEnt') }}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{ path('ficheEtu') }}">Etudiant</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{ path('ficheSchool') }}">Centre de Formation</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{ path('ficheEnt') }}">Profil</a>
+          </li>
+
+        {% endif %}
+
+        <!-- NAVBAR STUDENT -->
+        {% if is_granted('ROLE_STUDENT') %}
+          <li class="nav-item">
+            <a class="nav-item nav-link active" href="{{path('student_home')}}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{path('student_update')}}">Modifier profil</a>
+          </li>
+        {% endif %}
+
+        <!-- NAVBAR SCHOOL -->
+        {% if is_granted('ROLE_SCHOOL') %}
+          <li class="nav-item">
+            <a class="nav-item nav-link active" href="{{ path('school_index') }}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{ path('list_valid') }}">Utilisateurs</a>
+          </li>
+        {% endif %}
+
+        <!-- NAVBAR SCHOOL -->
+        {% if is_granted('ROLE_ADMIN') %}
+          <li class="nav-item">
+            <a class="nav-item nav-link active" href="{{ path('index_admin') }}">Accueil</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="{{ path('addSchool_admin') }}">Ajout SCHOOL</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="">Lien02</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-item nav-link" href="">Lien03</a>
+          </li>
+        {% endif %}
+
+        </ul>
+        <!-- CONNECT / DISCONNECT -->
+        <div class="form-inline my-2">
+          {% if is_granted('ROLE_ENTREPRISE') %}
+              <div class="my-1">Bonjour {{ app.user.firstname }}</div>
+          {% endif %}
+          {% if is_granted('ROLE_SCHOOL') %}
+              <div class="my-1">Bonjour {{ app.user.firstname }}</div>
+          {% endif %}
+          {% if is_granted('ROLE_STUDENT') %}
+              <div class="my-1">Bonjour {{ app.user.firstname }}</div>
+          {% endif %}
+          {% if is_granted('ROLE_ADMIN') %}
+              <div class="my-1">Bonjour {{ app.user.identity }}</div>
+          {% endif %}
+          {% if app.user %}
+          <a type="button" class="btn btn-outline-warning nav-link ml-2" href="{{ path('app_logout') }}">Deconnexion</a>
+          {% else %}
+            <a href="{{ path('app_login')}}" class="btn btn-lg btnConnexion">Connexion</a>
+            <a href="{{ path('home_registration')}}" class="btn btn-lg btnInscription ml-2">Inscription</a>
+          {% endif %}
+        </div>
+
+    </div>
+
+  </nav>
+</header>
+
+{% block body %}{% endblock %}
+
+  <footer>
+    <div class"container-fluid footer">
+      <div class="d-flex justify-content-around">
+
+        <div>
+          <i class="fa fa-facebook"></i>
+        </div>
+
+        <div>
+          <i class="fa fa-twitter-square"></i>
+        </div>
+
+        <div>
+          <i class="fa fa-instagram"></i>
+        </div>
+
+      </div>
+      <div>
+        <p class="text-center mt-5 copyright">&copy; RGB 2020
+        </p>
+      </div>
+    </div>
+  </footer>
+
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="{{asset('assets/js/script.js')}}"></script>
+
+{% block javascripts %}{% endblock %}
+
+</body>
+</html>

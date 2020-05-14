@@ -1,0 +1,115 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Backoffice
+{% endblock %}
+
+{% block body %}
+
+{% block styles %}
+	<style>
+		body {
+	 background-color:#f2f2f2;
+
+}
+h1{
+color: #4285F4;
+}
+.table{
+  background-color:#d9d9d9;
+}
+	</style>
+{% endblock styles %}
+
+
+
+
+<div class="container my-5">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="text-center my-5">Suppresion de utilisateur
+				<span class="font-weight-bold">"{{ users.identity }}"</span><br>
+			</h1>
+
+			  <table class="table">
+      <tbody>
+          <tr>
+           <th>Nom entreprise</th>
+            <td>{{users.identity }}</td>
+          </tr>
+
+
+          <tr>
+            <th>Adresse</th>
+            <td>{{users.adressPro}}</td>
+          </tr>
+
+          <tr>
+            <th>Code postale</th>
+            <td>{{users.zipcodePro}}</td>
+          </tr>
+
+          <tr>
+            <th>Ville</th>
+             <td>{{users.cityPro}}</td>
+          </tr>
+
+          <tr>
+            <th>Numero de teléphone</th>
+            <td>{{users.phonePro}}</td>
+         </tr>
+
+          <tr>
+            <th>N° Siret </th>
+             <td>{{users.siret}}</td>
+          </tr>
+
+          <tr>
+             <th>N° Siren</th>
+              <td>{{users.siren}}</td>
+          </tr>
+
+          <tr>
+             <th> NIC </th>
+            <td>{{users.nic}}</td>
+          </tr>
+
+          <tr>
+            <th>Code APE </th>
+              <td>{{users.apeCode}}</td>
+          </tr>
+
+          <tr>
+             <th>Email</th>
+              <td>{{users.email}}</td>
+          </tr>
+
+           <tr>
+               <th>Date d'enregistrement</th>
+                <td>{{users.dateRegistration|date('d/m/Y  H:i') }}</td>
+          </tr>
+
+          </tbody>
+        </table>
+			<div class="d-flex mt-5">
+				<div class="mx-auto">
+					<div class="alert alert-danger">Attention si vous supprimez cet utilisateur ça sera définitif</div>
+				</div>
+			</div>
+
+			<form class="d-flex" method="post">
+				<div class="mx-auto">
+					<p class="text-center h4">Supprimer cet utilisateur ?</p>
+					<div class="d-flex">
+						<div class="mx-auto my-5">
+							<input type="hidden" name="delete" value="yes">
+							<button type="submit" class="btn btn-outline-danger">Supprimer</button>
+						</div>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+ <a href="{{ path('list_valid') }}" class="text-info"><img src="{{asset('assets/img/back.png')}}"  class="m-3 bg-warning p-2" alt="icon bdd"></a>
+
+{% endblock %}

@@ -1,0 +1,174 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+
+<div class="row">
+    <div class="col-lg-4 col-md-12 col-sm-12">
+        <div id="calendar">
+
+        </div>
+
+        <div class="mailForm">
+            <form class="form rounded p-4 form-bg" id="mailSend" method="POST">
+                <h2 class="text-center text-lead">Envoyer un message à l'administration</h2>
+                <div class="form-group mt-4">
+                    <label for="title">Objet</label>
+                    <input type="text" class="form-control rounded-pill border-0" name="title" id="title"
+                        placeholder="Votre objet...">
+                    <input type="hidden" name="action" value="sendmessage">
+                </div>
+
+                <div class="form-group">
+                    <label for="content">Message</label>
+                    <textarea type="text" class="form-control border-0" placeholder="Entrez votre message..."
+                        name="content" id="content" rows="5"></textarea>
+                </div>
+                <div class="d-flex justify-content-around mb-3">
+                    <button name="submit" type="submit"
+                        class="btn btnMailEnvoyer text-light rounded-pill">Envoyer</button>
+                    <a href="#" class="mailboxFlip rounded-pill btn text-dark btnReception "
+                        id="mailboxFlip">Afficher/masquer les envois</a>
+                </div>
+
+
+
+                <div id="mailboxToggle">
+                    <div class="d-flex align-content-center flex-column mt-3" >
+                    {% if reception is defined %}
+                        {% for message in reception %}
+                        {% if message.user_id == app.user.id %}
+                        <small class="text-center"><strong>Envoyé à l'administration</strong></small>
+                        <h2 class="text-center"> {{message.title}}</h2>
+                        <ul class="list-group text-center">
+                            <li>
+                                <p class="text-center text-lead">{{message.content}}</p>
+                            </li>
+                        </ul>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </form>
+
+            <div class="jumbotron jumbotronJobSearch d-flex flex-column justify-content-between align-items-center">
+                <div id="jsb_container" class="jsb_holder">
+
+                    <a href="https://fr.jooble.org/" class="cgl" rel="nofollow">Recherche de stage</a>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-12 col-lg-8 col-md-12 mb-5">
+        <div class="d-flex justify-content-center flex-column align-items-center">
+            <div class="profilImage">
+            </div>
+
+            <div class="sandbox">
+
+
+                <div class="row">
+                
+                    {% embed "filemanager.html.twig" %}
+
+                    {% endembed %}
+                </div>
+            </div>
+
+        </div>
+        <div class=" actualityDiv mt-5">
+            <div class="d-flex justify-content-center">
+                <ul class="col-sm-12 col-lg-12 col-md-12 jumbotron actuality mt-3" id="actuality">
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<link href="{{asset('assets/packages/core/main.css')}}" rel='stylesheet' />
+<link href="{{asset('assets/packages/daygrid/main.css')}}" rel='stylesheet' />
+<script src="{{asset('assets/packages/core/main.js')}}"></script>
+<script src="{{asset('assets/packages/interaction/main.js')}}"></script>
+<script src="{{asset('assets/packages/daygrid/main.js')}}"></script>
+<script src="{{asset('assets/packages/core/locales-all.js')}}"></script>
+<script src="{{asset('assets/js/calendar.js')}}"></script>
+<script src="{{asset('assets/js/calendar.min.js')}}"></script>
+<script src="{{asset('assets/js/justFlipIt.min.js')}}"></script>
+
+    <!-- Fin Joobble API recherche -->
+    <script type="text/javascript" src="https://fr.jooble.org/SearchBox" language="javascript"></script>
+
+
+    <script>
+
+        var searchBox = new JSearchBox('jsb_container', 0, '320', '7', ''/*bordure*/ , '#4285f4' /*background recherche*/, '#555555' /*font-color*/, '#ffffff', '#4285f4', '#555555', '#60bf60', 'Verdana', '13', '#555555'/*small input*/, '', '');
+
+
+        let pays = 'country=fr';
+        let apiKey = "443c627bbe5542c1935e663280a674aa";
+        let categorie = 'category=technology'
+
+
+        let urlAffichage = 'https://newsapi.org/v2/top-headlines?' + pays + '&' + categorie + '&apiKey=' + apiKey;
+
+
+
+
+        fetch(urlAffichage)
+            .then(response => response.json())
+            .then((json) => {
+            let articles = json.articles;
+            for (const article of articles) {
+
+                        let titreArticles = document.createElement('h2');    //On créer une nouvelle balise <li>
+                        titreArticles.className = "display-3 titres";
+                        titreArticles.innerHTML = article.title;    //On lui rajoute du texte
+                        let listeTitreArticles = document.querySelector('#actuality');    //On sélectionne une liste
+                        listeTitreArticles.appendChild(titreArticles);    //On lui ajoute la balise <li> précédemment créée
+
+                        let contenuArticles = document.createElement('p');    //On créer une nouvelle balise <li>
+                        contenuArticles.className = "text-lead content";
+                        contenuArticles.innerHTML = article.content;    //On lui rajoute du texte
+                        let listeContenuArticles = document.querySelector('#actuality');    //On sélectionne une liste
+                        listeContenuArticles.appendChild(contenuArticles);    //On lui ajoute la balise
+                     
+                        let hRArticles = document.createElement('hr');    //On créer une nouvelle balise <li>
+                        hRArticles.className = "shadow-lg";
+                        let listeHrArticles = document.querySelector('#actuality');    //On sélectionne une liste
+                        listeHrArticles.appendChild(hRArticles);    //On lui ajoute la balise
+
+
+
+
+        };//Fermeture fetch
+})
+
+
+
+            /*let degreConverti = Math.round(json.main.temp - 273.15);
+                document.querySelector("#temperature").innerHTML = degreConverti;
+                let metreSecondeEnKM = Math.round(json.wind.speed * 3.6);
+                document.querySelector("#vitesseVent").innerHTML = metreSecondeEnKM;
+                document.querySelector("#fleche").style.transform = 'rotateZ(' + json.wind.deg + 'deg)';*/
+
+    $(document).ready(function(){
+
+     $('#mailboxFlip').on("click", function(event){
+            event.preventDefault();
+            $("#mailboxToggle").slideToggle();  //ou slideToggle
+        });
+    }); // Affichage la boîte de réception quand on clique sur le boutton Boite de réception
+    </script>
+
+{% endblock %}
